@@ -81,6 +81,12 @@ class BootStrap {
                                         password: '30lospinos',
                                         enabled: true).save(failOnError: true)
 
+                        if (!adminUser.authorities.contains(adminRole)) {
+                                SecUserSecRole.create adminUser, adminRole
+                        }
+                        if (!userUser.authorities.contains(userRole)) {
+                                SecUserSecRole.create userUser, userRole
+                        }
 			
                         Person person = new Person(
 				firstName: 'sean',
