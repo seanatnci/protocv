@@ -52,7 +52,7 @@ grails.project.dependency.resolution = {
         runtime 'mysql:mysql-connector-java:5.1.27'
 		//compile 'com.stripe:stripe-java:1.7.1'
 		//runtime 'org.springframework.security:spring-security-core:3.2.0.RC1'
-        // runtime 'org.postgresql:postgresql:9.3-1100-jdbc41'
+        runtime 'org.postgresql:postgresql:9.3-1100-jdbc41'
     }
 
     plugins {

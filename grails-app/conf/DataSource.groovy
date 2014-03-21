@@ -34,11 +34,13 @@ environments {
     production {
         dataSource {
             dbCreate = "update"
-            URI dbUri = new URI(System.getenv("CLEARDB_DATABASE_URL"));
-
+            driverClassName = "org.postgresql.Driver"
+            dialect = org.hibernate.dialect.PostgreSQLDialect
+            //URI dbUri = new URI(System.getenv("CLEARDB_DATABASE_URL"));
+            URI dbUri = new URI(System.getenv("DATABASE_URL"));
             username = dbUri.getUserInfo().split(":")[0];
             password = dbUri.getUserInfo().split(":")[1];
-            url = "jdbc:mysql://" + dbUri.getHost() + dbUri.getPath();
+            url = "jdbc:postgres://" + dbUri.getHost() + dbUri.getPath();
 
         }
     }
