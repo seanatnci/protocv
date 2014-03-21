@@ -33,7 +33,7 @@ environments {
     }
     production {
         dataSource {
-            dbCreate = "create_drop"
+            dbCreate = "create-drop"
             driverClassName = "org.postgresql.Driver"
             dialect = org.hibernate.dialect.PostgreSQLDialect
             //URI dbUri = new URI(System.getenv("CLEARDB_DATABASE_URL"));
