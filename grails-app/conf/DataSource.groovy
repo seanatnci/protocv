@@ -34,9 +34,12 @@ environments {
     production {
         dataSource {
             dbCreate = "update"
-            url = "jdbc:mysql://localhost/protocv_prod?useUnicode=yes&characterEncoding=UTF-8"
-            username = "root"
-            password = "30lospinos"
+            URI dbUri = new URI(System.getenv("CLEARDB_DATABASE_URL"));
+
+            username = dbUri.getUserInfo().split(":")[0];
+            password = dbUri.getUserInfo().split(":")[1];
+            url = "jdbc:mysql://" + dbUri.getHost() + dbUri.getPath();
+
         }
     }
 }
