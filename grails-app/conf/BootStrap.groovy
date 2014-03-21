@@ -2,9 +2,9 @@ import grails.util.Environment
 import java.util.Date
 import protocv.Person
 import protocv.Education
-import protocv.Role
-import protocv.User
-import protocv.UserRole
+import protocv.SecRole
+import protocv.SecUser
+import protocv.SecUserSecRole
 class BootStrap {
     def springSecurityService
     def init = { servletContext ->
@@ -12,21 +12,24 @@ class BootStrap {
             // insert Development environment specific code here
                         println "In Bootstrap"
                                                 
-                        def userRole = Role.findByAuthority('ROLE_USER') ?: new Role(authority: 'ROLE_USER').save(failOnError: true)
-                        def adminRole = Role.findByAuthority('ROLE_ADMIN') ?: new Role(authority: 'ROLE_ADMIN').save(failOnError: true)
+                        def userRole = SecRole.findByAuthority('ROLE_USER') ?: new SecRole(authority: 'ROLE_USER').save(failOnError: true)
+                        def adminRole = SecRole.findByAuthority('ROLE_ADMIN') ?: new SecRole(authority: 'ROLE_ADMIN').save(failOnError: true)
      
-                        def adminUser = User.findByUsername('admin') ?: new User(
+                        def adminUser = SecUser.findByUsername('admin') ?: new SecUser(
                                         username: 'admin',
                                         password: '30lospinos',
                                         enabled: true).save(failOnError: true)
                                     
-                        def userUser = User.findByUsername('lillylangtree') ?: new User(
+                        def userUser = SecUser.findByUsername('lillylangtree') ?: new SecUser(
                                         username: 'lillylangtree',
                                         password: '30lospinos',
                                         enabled: true).save(failOnError: true)
 
                         if (!adminUser.authorities.contains(adminRole)) {
-                                UserRole.create adminUser, adminRole
+                                SecUserSecRole.create adminUser, adminRole
+                        }
+                        if (!userUser.authorities.contains(userRole)) {
+                                SecUserSecRole.create userUser, userRole
                         }
 			
                         Person person = new Person(
@@ -65,22 +68,19 @@ class BootStrap {
         } else 
         if (Environment.current == Environment.PRODUCTION) {
             // insert Production environment specific code here
-                        def userRole = Role.findByAuthority('ROLE_USER') ?: new Role(authority: 'ROLE_USER').save(failOnError: true)
-                        def adminRole = Role.findByAuthority('ROLE_ADMIN') ?: new Role(authority: 'ROLE_ADMIN').save(failOnError: true)
+                        def userRole = SecRole.findByAuthority('ROLE_USER') ?: new SecRole(authority: 'ROLE_USER').save(failOnError: true)
+                        def adminRole = SecRole.findByAuthority('ROLE_ADMIN') ?: new SecRole(authority: 'ROLE_ADMIN').save(failOnError: true)
      
-                        def adminUser = new User(
+                        def adminUser = SecUser.findByUsername('admin') ?: new SecUser(
                                         username: 'admin',
                                         password: '30lospinos',
                                         enabled: true).save(failOnError: true)
                                     
-                        def userUser = new User( 
+                        def userUser = SecUser.findByUsername('lillylangtree') ?: new SecUser(
                                         username: 'lillylangtree',
                                         password: '30lospinos',
                                         enabled: true).save(failOnError: true)
 
-                        if (!adminUser.authorities.contains(adminRole)) {
-                                UserRole.create adminUser, adminRole
-                        }
 			
                         Person person = new Person(
 				firstName: 'sean',

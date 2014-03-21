@@ -123,10 +123,7 @@ log4j = {
 grails.plugins.stripe.secretKey = 'sk_test_3T9yzJA92VtirwaFtVpnpwit'
 grails.plugins.stripe.publishableKey = 'pk_test_Ba33A6wgbjtjdd6oXYT553re'
 
-// Added by the Spring Security Core plugin:
-grails.plugin.springsecurity.userLookup.userDomainClassName = 'protocv.User'
-grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'protocv.UserRole'
-grails.plugin.springsecurity.authority.className = 'protocv.Role'
+
 
 grails.plugin.springsecurity.controllerAnnotations.staticRules = [
 	'/':                              ['permitAll'],
@@ -140,4 +137,11 @@ grails.plugin.springsecurity.controllerAnnotations.staticRules = [
 	'/**/images/**':                  ['permitAll'],
 	'/**/favicon.ico':                ['permitAll']
 ]
+
+
+
+// Added by the Spring Security Core plugin:
+grails.plugin.springsecurity.userLookup.userDomainClassName = 'protocv.SecUser'
+grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'protocv.SecUserSecRole'
+grails.plugin.springsecurity.authority.className = 'protocv.SecRole'
 
