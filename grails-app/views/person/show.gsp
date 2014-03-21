@@ -36,7 +36,7 @@
                                 <g:if test="${personInstance?.dob}">
 				<li class="fieldcontain">
 					<span id="dob-label" class="property-label"><g:message code="person.dob.label" default="Dob" /></span>
-					<span class="property-value" aria-labelledby="dob-label"><g:formatDate format="D mmm yyyy" date="${personInstance?.dob" /></span>
+					<span class="property-value" aria-labelledby="dob-label"><g:formatDate format="D mmm yyyy" date="${personInstance?.dob}" /></span>
 					
 				</li>
 				</g:if>
